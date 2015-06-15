@@ -1,5 +1,17 @@
 var app         = angular.module("app", ["ui.router", "ngAnimate"]);
 
+app.run(function($rootScope) {
+  var elBody = document.getElementsByTagName('body')[0];
+  var initBodyClasses = elBody.className;
+  $rootScope.$on("$stateChangeSuccess", function(event, toState, toParams, fromState, fromParams) {
+      if (initBodyClasses == '') {
+        elBody.className = toState.name;
+      } else {
+        elBody.className = toState.name + " " + initBodyClasses;
+      }
+  });
+});
+
 app.config(['$stateProvider', '$urlRouterProvider', 
     function ($stateProvider, $urlRouterProvider) {
     $stateProvider
@@ -26,7 +38,7 @@ app.config(['$stateProvider', '$urlRouterProvider',
                 }
             }
         })
-        .state('openmodal', { 
+        .state('open-modal', { 
             parent: 'main',
             views: {
                 'modal@': {

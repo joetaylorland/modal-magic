@@ -98,6 +98,9 @@ body {
   font-family: "Roboto";
   font-weight: 300;
 }
+body.open-modal {
+  overflow: hidden;
+}
 [ui-view="content"],
 [ui-view="main"],
 [ui-view="side"],
@@ -131,7 +134,7 @@ body {
   flex: 1 1 auto;
 }
 [ui-view="content"] .content {
-  height: 100%;
+  height: 200%;
   width: 100%;
   position: absolute;
   background-color: #fafafa;
@@ -144,7 +147,7 @@ body {
   flex: 0 0 300px;
 }
 [ui-view="side"] .side {
-  height: 100%;
+  height: 200%;
   width: 100%;
   position: absolute;
   background-color: #efefef;
@@ -157,7 +160,11 @@ body {
   bottom: 0;
 }
 [ui-view="modal"] .modal {
-  position: relative;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  right: 0;
   width: 100%;
   min-height: 100%;
   display: -webkit-box;
@@ -178,7 +185,7 @@ body {
 }
 [ui-view="modal"] .modal .scrim {
   position: absolute;
-  z-index: 1;
+  z-index: 2;
   opacity: 1;
   width: 100%;
   top: 0;
@@ -190,7 +197,7 @@ body {
 }
 [ui-view="modal"] .modal .box {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   opacity: 1;
   -webkit-transform: translate3d(0, 0, 0);
   -moz-transform: translate3d(0, 0, 0);

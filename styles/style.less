@@ -53,6 +53,9 @@
 		height: 100%;
 		font-family: @body-font;
 		font-weight: @thin;
+		&.open-modal {
+			overflow: hidden;
+		}
 	}
 
 	[ui-view="content"], [ui-view="main"], [ui-view="side"], [ui-view="default"] {
@@ -72,7 +75,7 @@
 	[ui-view="content"] {
 		.flex-item(1 1 auto);
 		.content {
-			height: 100%;
+			height: 200%;
 			width: 100%;
 			position: absolute;
 			background-color: #fafafa;
@@ -82,7 +85,7 @@
 	[ui-view="side"] {
 		.flex-item(0 0 300px);
 		.side {
-			height: 100%;
+			height: 200%;
 			width: 100%;
 			position: absolute;
 			background-color: #efefef;
@@ -96,13 +99,17 @@
 		right: 0;
 		bottom: 0;
 		.modal {
-			position: relative;
+			position: fixed;
+			z-index: 1;
+			top: 0;
+			left: 0;
+			right: 0;
 			width: 100%;
 			min-height: 100%;
 			.flex-center;
 			.scrim {
 				position: absolute;
-				z-index: 1;
+				z-index: 2;
 				opacity: 1;
 				width: 100%;
 				top: 0;
@@ -114,7 +121,7 @@
 			}
 			.box {
 				position: relative;
-				z-index: 2;
+				z-index: 3;
 				opacity: 1;
 				.translate3d(0,0,0);
 				width: 500px;
