@@ -1,0 +1,183 @@
+//	RESETS
+
+	html, body { margin: 0; padding: 0; }
+	h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, cite, code, del, dfn, em, img, q, s, samp, small, strike, strong, sub, sup, tt, var, dd, dl, dt, li, ol, ul, fieldset, form, label, legend, button, table, caption, tbody, tfoot, thead, tr, th, td { margin: 0; padding: 0; border: 0; font-weight: normal; font-style: normal; font-size: 100%; line-height: 1; font-family: inherit; }
+	table { border-collapse: collapse; border-spacing: 0; }
+	ol, ul { list-style: none; }
+	q:before, q:after, blockquote:before, blockquote:after { content: ""; }
+
+	@import "mixins.less";
+
+
+//	CHESTNUTS
+
+	.float-right {
+		float: right !important;
+	}
+
+	.float-left {
+		float: left !important;
+	}
+
+	.clearfix {
+		clear: both;
+	}
+
+	.truncate {
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow-y: hidden;
+	}
+
+
+//	GENERAL SETTINGS
+
+	@bodyfontsize: 1rem;
+	@body-font:	"Roboto";
+	@import url("http://fonts.googleapis.com/css?family=@{body-font}:100,300,400,600,700&.css");
+	@light: 100;
+	@thin: 300;
+	@normal: 400;
+	@bold: 600;
+	@heavy: 700;
+
+
+//	STRUCTURE
+
+	html {
+	  	font-size: @bodyfontsize;
+	  	height: 100%;
+	}
+
+	body {
+		height: 100%;
+		font-family: @body-font;
+		font-weight: @thin;
+	}
+
+	[ui-view="content"], [ui-view="main"], [ui-view="side"], [ui-view="default"] {
+		height: auto;
+		min-height: 100%;
+	}
+
+	.main {
+		.flex-parent;
+		.flex-flow(row wrap);
+		.justify-content(stretch);
+		height: 100%;
+		width: 100%;
+		position: absolute;
+	}
+
+	[ui-view="content"] {
+		.flex-item(1 1 auto);
+		.content {
+			height: 100%;
+			width: 100%;
+			position: absolute;
+			background-color: #fafafa;
+		}
+	}
+
+	[ui-view="side"] {
+		.flex-item(0 0 300px);
+		.side {
+			height: 100%;
+			width: 100%;
+			position: absolute;
+			background-color: #efefef;
+		}
+	}
+
+	[ui-view="modal"] {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		.modal {
+			position: relative;
+			width: 100%;
+			min-height: 100%;
+			.flex-center;
+			.scrim {
+				position: absolute;
+				z-index: 1;
+				opacity: 1;
+				width: 100%;
+				top: 0;
+				left: 0;
+				right: 0;
+				min-height: 100%;
+				background-color: rgba(0,0,0,0.65);
+				cursor: pointer;
+			}
+			.box {
+				position: relative;
+				z-index: 2;
+				opacity: 1;
+				.translate3d(0,0,0);
+				width: 500px;
+				height: 350px;
+				border-radius: 3px;
+				box-shadow: 0 1px 5px rgba(0,0,0,0.5);
+				padding: 1rem 1.25rem;
+				background-color: #fff;
+			}
+		}
+	}
+
+	//	FADE ANIMATION FOR SCRIM & BOX
+
+		//	SCRIM
+
+			[ui-view="modal"].ng-enter, [ui-view="modal"].ng-leave {
+				.transition(all 0.75s ease);
+			}
+
+			[ui-view="modal"].ng-enter .modal .scrim, [ui-view="modal"].ng-leave .modal .scrim {
+				.transition(all 0.75s ease);
+			}
+
+			[ui-view="modal"].ng-enter .modal .scrim {
+				opacity: 0;
+			}
+
+			[ui-view="modal"].ng-enter-active .modal .scrim {
+				opacity: 1;
+			}
+
+			[ui-view="modal"].ng-leave .modal .scrim {
+				opacity: 1;
+			}
+
+			[ui-view="modal"].ng-leave-active .modal .scrim {
+				opacity: 0;
+			}
+
+		//	BOX
+
+			[ui-view="modal"].ng-enter .modal .box, [ui-view="modal"].ng-leave .modal .box {
+				.transition(all 0.25s ease);
+			}
+
+			[ui-view="modal"].ng-enter .modal .box {
+				opacity: 0;
+				.translate3d(0,3rem,0);
+			}
+
+			[ui-view="modal"].ng-enter-active .modal .box {
+				opacity: 1;
+				.translate3d(0,0,0);
+			}
+
+			[ui-view="modal"].ng-leave .modal .box {
+				opacity: 1;
+				.translate3d(0,0,0);
+			}
+
+			[ui-view="modal"].ng-leave-active .modal .box {
+				opacity: 0;
+				.translate3d(0,3rem,0);
+			}
+

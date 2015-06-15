@@ -1,0 +1,274 @@
+@import url("http://fonts.googleapis.com/css?family=Roboto:100,300,400,600,700&.css");
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+dd,
+dl,
+dt,
+li,
+ol,
+ul,
+fieldset,
+form,
+label,
+legend,
+button,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 100%;
+  line-height: 1;
+  font-family: inherit;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+ol,
+ul {
+  list-style: none;
+}
+q:before,
+q:after,
+blockquote:before,
+blockquote:after {
+  content: "";
+}
+.float-right {
+  float: right !important;
+}
+.float-left {
+  float: left !important;
+}
+.clearfix {
+  clear: both;
+}
+.truncate {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow-y: hidden;
+}
+html {
+  font-size: 1rem;
+  height: 100%;
+}
+body {
+  height: 100%;
+  font-family: "Roboto";
+  font-weight: 300;
+}
+[ui-view="content"],
+[ui-view="main"],
+[ui-view="side"],
+[ui-view="default"] {
+  height: auto;
+  min-height: 100%;
+}
+.main {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+  -ms-flex-flow: row wrap;
+  flex-flow: row wrap;
+  -webkit-justify-content: stretch;
+  -moz-justify-content: stretch;
+  -o-justify-content: stretch;
+  -ms-justify-content: stretch;
+  justify-content: stretch;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+[ui-view="content"] {
+  -webkit-flex: 1 1 auto;
+  -moz-flex: 1 1 auto;
+  -o-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+}
+[ui-view="content"] .content {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background-color: #fafafa;
+}
+[ui-view="side"] {
+  -webkit-flex: 0 0 300px;
+  -moz-flex: 0 0 300px;
+  -o-flex: 0 0 300px;
+  -ms-flex: 0 0 300px;
+  flex: 0 0 300px;
+}
+[ui-view="side"] .side {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background-color: #efefef;
+}
+[ui-view="modal"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+[ui-view="modal"] .modal {
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -o-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -o-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+}
+[ui-view="modal"] .modal .scrim {
+  position: absolute;
+  z-index: 1;
+  opacity: 1;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  min-height: 100%;
+  background-color: rgba(0, 0, 0, 0.65);
+  cursor: pointer;
+}
+[ui-view="modal"] .modal .box {
+  position: relative;
+  z-index: 2;
+  opacity: 1;
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  width: 500px;
+  height: 350px;
+  border-radius: 3px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+  padding: 1rem 1.25rem;
+  background-color: #fff;
+}
+[ui-view="modal"].ng-enter,
+[ui-view="modal"].ng-leave {
+  -webkit-transition: all 0.75s ease;
+  -moz-transition: all 0.75s ease;
+  -o-transition: all 0.75s ease;
+  -ms-transition: all 0.75s ease;
+  transition: all 0.75s ease;
+}
+[ui-view="modal"].ng-enter .modal .scrim,
+[ui-view="modal"].ng-leave .modal .scrim {
+  -webkit-transition: all 0.75s ease;
+  -moz-transition: all 0.75s ease;
+  -o-transition: all 0.75s ease;
+  -ms-transition: all 0.75s ease;
+  transition: all 0.75s ease;
+}
+[ui-view="modal"].ng-enter .modal .scrim {
+  opacity: 0;
+}
+[ui-view="modal"].ng-enter-active .modal .scrim {
+  opacity: 1;
+}
+[ui-view="modal"].ng-leave .modal .scrim {
+  opacity: 1;
+}
+[ui-view="modal"].ng-leave-active .modal .scrim {
+  opacity: 0;
+}
+[ui-view="modal"].ng-enter .modal .box,
+[ui-view="modal"].ng-leave .modal .box {
+  -webkit-transition: all 0.25s ease;
+  -moz-transition: all 0.25s ease;
+  -o-transition: all 0.25s ease;
+  -ms-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+}
+[ui-view="modal"].ng-enter .modal .box {
+  opacity: 0;
+  -webkit-transform: translate3d(0, 3rem, 0);
+  -moz-transform: translate3d(0, 3rem, 0);
+  -ms-transform: translate3d(0, 3rem, 0);
+  -o-transform: translate3d(0, 3rem, 0);
+  transform: translate3d(0, 3rem, 0);
+}
+[ui-view="modal"].ng-enter-active .modal .box {
+  opacity: 1;
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+[ui-view="modal"].ng-leave .modal .box {
+  opacity: 1;
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+[ui-view="modal"].ng-leave-active .modal .box {
+  opacity: 0;
+  -webkit-transform: translate3d(0, 3rem, 0);
+  -moz-transform: translate3d(0, 3rem, 0);
+  -ms-transform: translate3d(0, 3rem, 0);
+  -o-transform: translate3d(0, 3rem, 0);
+  transform: translate3d(0, 3rem, 0);
+}
