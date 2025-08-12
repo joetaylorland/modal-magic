@@ -1,0 +1,29 @@
+name: ControlFront Scan
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Run ControlFront scan (CI mode)
+        run: npx -y @controlfront/cli@latest scan
+        env:
+          NEXT_PUBLIC_APP_URL: https://app.controlfront.io
+          CF_ORG_ID: 122ef394-c1d4-4461-b8d4-12ea5963d3b4
+          CF_PROJECT_ID: f04ff9de-d052-4ca5-a914-800eba3b5d5e
+          CF_CI_MODE: "true"
+          CF_INGEST_TOKEN: bNzrDFcks_Imc-oM2gliFoRD6nmQdFQ5N16Bwvuorjs
