@@ -1,4 +1,7 @@
 name: ControlFront Scan
+permissions:
+  actions: write
+  contents: read
 on:
   push:
     branches:
@@ -26,4 +29,4 @@ jobs:
           CF_ORG_ID: 122ef394-c1d4-4461-b8d4-12ea5963d3b4
           CF_PROJECT_ID: f04ff9de-d052-4ca5-a914-800eba3b5d5e
           CF_CI_MODE: "true"
-          CF_INGEST_TOKEN: bNzrDFcks_Imc-oM2gliFoRD6nmQdFQ5N16Bwvuorjs
+          CF_INGEST_TOKEN: jvVF5DX4pMoK2mnidWMtXEmj6vwjmemUMUJbE56I81k
