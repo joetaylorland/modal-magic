@@ -29,4 +29,4 @@ jobs:
           CF_ORG_ID: 122ef394-c1d4-4461-b8d4-12ea5963d3b4
           CF_PROJECT_ID: cc577a65-c07f-48b4-898f-8c133093d32c
           CF_CI_MODE: "true"
-          CF_INGEST_TOKEN: Pgjk9SPBl9-TyNOMIfBmM0Xv8ouA6D58WCVf_LD4LQU
+          CF_INGEST_TOKEN: qfysc46FFpbTy_bf3_Q_QiqvzDsokwt6lHyCKFvPzo8
