@@ -1,0 +1,32 @@
+name: ControlFront Scan
+permissions:
+  actions: write
+  contents: read
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Run ControlFront scan (CI mode)
+        run: npx -y @controlfront/cli@latest scan
+        env:
+          NEXT_PUBLIC_APP_URL: https://cf-dev-x8a9k2h1r7v3pzq5.ngrok.app
+          CF_ORG_ID: 11a9723f-a141-43b3-ba18-fc5921df4569
+          CF_PROJECT_ID: 020bb66d-2628-406d-baba-2d4bc117711a
+          CF_CI_MODE: "true"
+          CF_INGEST_TOKEN: Lv7WCeI16JFqnwm92v1Y50mUleJQcq_vwcppPHq3zLg
