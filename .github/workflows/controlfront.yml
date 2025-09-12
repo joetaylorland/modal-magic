@@ -1,0 +1,48 @@
+name: ControlFront Scan
+permissions:
+  actions: write
+  contents: read
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+    inputs:
+      cf_user_id:
+        description: "ControlFront user ID triggering the scan"
+        required: false
+        type: string
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Log triggering user ID
+        run: echo "cf_user_id is ${{ github.event.inputs.cf_user_id }}"
+      - name: Fetch ControlFront session token
+        id: fetch_token
+        run: |
+          response=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" -H "Content-Type: application/json" -d '{"repo_id":${{ github.repository_id }}}' https://app.controlfront.io/api/github-actions/session)
+          echo "Response: $response"
+          token=$(echo "$response" | jq -r '.cf_session_token')
+          if [ "$token" = "null" ] || [ -z "$token" ]; then
+            echo "Failed to fetch CF_SESSION_TOKEN"
+            exit 1
+          fi
+          echo "CF_SESSION_TOKEN=$token" >> $GITHUB_ENV
+      - name: Run ControlFront scan (CI mode)
+        run: npx -y @controlfront/cli@latest scan
+        env:
+          CF_APP_URL: https://app.controlfront.io
+          CF_CI_MODE: "true"
+          CF_SESSION_TOKEN: ${{ env.CF_SESSION_TOKEN }}
